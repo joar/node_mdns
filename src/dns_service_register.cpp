@@ -94,13 +94,15 @@ createTXTRecord(scopedTXTRecord& txtRecord, Local<Object>& object) {
         Local<Value> key = names->Get(index);
 
         if (key->IsString()) {
-            Local<Value> buffer = object->Get(key);
+            // Local<Value> buffer = object->Get(key);
+            Handle<Value> buffer = object->Get(key);
+            String::Utf8Value string_value( buffer->ToString());
 
             // A DNS-SD key is 7-bit ascii
             String::AsciiValue keyString(key);
             std::string buf(*keyString, keyString.length());
 
-            Local<Object> obj;
+ /*           Local<Object> obj;
             uint8_t valLen = 0;
             const void *value = NULL;
 
@@ -111,6 +113,10 @@ createTXTRecord(scopedTXTRecord& txtRecord, Local<Object>& object) {
             }
 
             if (txtRecord.setValue(buf.c_str(), valLen, value) != kDNSServiceErr_NoError) {
+                return false;
+            }
+*/        
+            if (txtRecord.setValue(buf.c_str(), buffer->ToString()->Utf8Length(), *string_value) != kDNSServiceErr_NoError) {
                 return false;
             }
         } else {
