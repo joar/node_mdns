@@ -10,7 +10,7 @@
     , "url": "http://github.com/agnat/node_mdns/raw/master/LICENSE"
     }
   ]
-, "bugs": { "web": "http://github.com/agnat/node_mdns/issues" }
+, "bugs": { "url": "http://github.com/agnat/node_mdns/issues" }
 , "repository":
   { "type": "git"
   , "url":  "http://github.com/agnat/node_mdns.git"
