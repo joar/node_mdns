@@ -1,0 +1,1 @@
+#define NODE_MDNS_DNS_SD_BACKEND 1
